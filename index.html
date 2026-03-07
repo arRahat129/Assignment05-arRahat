@@ -34,12 +34,15 @@
     </div>
 
     <main class="container mx-auto mt-15 space-y-4 mb-5">
+        <!-- TOOGLE PART -->
         <section id="toogle-button-section" class="card border border-gray-200 p-6 flex flex-row space-x-2">
-            <button class="btn btn-primary px-8">All</button>
-            <button class="btn bg-white text-gray-500 px-8">Open</button>
-            <button class="btn bg-white text-gray-500 px-8">Closed</button>
+            <button id="all-filter-btn" onclick="toogleStyle('all-filter-btn')" class="btn btn-primary px-8">All</button>
+            <button id="open-filter-btn" onclick="toogleStyle('open-filter-btn')" class="btn bg-white text-gray-500 px-8">Open</button>
+            <button id="closed-filter-btn" onclick="toogleStyle('closed-filter-btn')" class="btn bg-white text-gray-500 px-8">Closed</button>
         </section>
+
         <section id="working-section" class="card border border-gray-200">
+            <!-- COUNTS SHOW -->
             <div id="count-part" class="flex justify-between items-center p-6">
                 <div id="" class="left-part flex items-center gap-2">
                     <div class="image bg-[#ECE4FF] p-2 rounded-full">
@@ -57,164 +60,21 @@
                 </div>
             </div>
 
-            <div id="cards" class="p-6 bg-gray-50 grid grid-cols-4 gap-3">
-                <div class="card shadow-md border-t-2 border-t-[#00A96E]">
-                    <div class="upper-part space-y-3 p-3">
-                        <div class="flex justify-between items-center">
-                            <div id="status" class="inner-card-img bg-[#CBFADB] p-2 rounded-full">
-                                <img src="./assets/Open-Status.png" alt="">
-                            </div>
+            <hr class="border border-gray-200">
 
-                            <div id="priority">
-                                <button id="priority-btn" class="bg-[#FEECEC] text-[#EF4444] px-8 py-2 rounded-full font-medium text-xs">HIGH</button>
-                            </div>
-                        </div>
+            <!-- LOADING SPINNER -->
+            <div id="loading-spinner" class="h-[60vh] hidden justify-center items-center">
+                <span class="loading loading-spinner loading-xl"></span>
+            </div>
 
-                        <div class="space-y-2">
-                            <h2 id="title" class="text-[#1F2937] text-sm font-semibold">Fix navigation menu on mobile devices</h2>
-                            <p id="description" class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
-                            <div class="flex gap-2">
-                                <button id="category" class="w-fit bg-[#FEECEC] text-[#EF4444] border border-[#f7c3c3] p-2 rounded-full font-medium text-xs"><i class="fa-solid fa-bug" style="color: #ef4444;"></i> BUG</button>
-
-                                <button id="label" class="bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A] p-2 rounded-full font-medium text-xs"><i class="fa-solid fa-life-ring" style="color: #d97706;"></i> HELP WANTED</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="w-full border border-gray-200">
-
-                    <div class="lower-part space-y-2 p-3">
-                        <p id="author" class="text-[#64748B] text-xs">#1 by john_doe</p>
-                        <p id="created-at" class="text-[#64748B] text-xs">1/15/2024</p>
-                    </div>
-                </div>
-
-                <div class="card shadow-md border-t-2 border-t-[#00A96E]">
-                    <div class="upper-part space-y-3 p-3">
-                        <div class="flex justify-between items-center">
-                            <div id="status" class="inner-card-img bg-[#CBFADB] p-2 rounded-full">
-                                <img src="./assets/Open-Status.png" alt="">
-                            </div>
-
-                            <div id="priority">
-                                <button id="priority-btn" class="bg-[#FEECEC] text-[#EF4444] px-8 py-2 rounded-full font-medium text-xs">HIGH</button>
-                            </div>
-                        </div>
-
-                        <div class="space-y-2">
-                            <h2 id="title" class="text-[#1F2937] text-sm font-semibold">Fix navigation menu on mobile devices</h2>
-                            <p id="description" class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
-                            <div class="flex gap-2">
-                                <button id="category" class="w-fit bg-[#FEECEC] text-[#EF4444] border border-[#f7c3c3] p-2 rounded-full font-medium text-xs"><i class="fa-solid fa-bug" style="color: #ef4444;"></i> BUG</button>
-
-                                <button id="label" class="bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A] p-2 rounded-full font-medium text-xs"><i class="fa-solid fa-life-ring" style="color: #d97706;"></i> HELP WANTED</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="w-full border border-gray-200">
-
-                    <div class="lower-part space-y-2 p-3">
-                        <p id="author" class="text-[#64748B] text-xs">#1 by john_doe</p>
-                        <p id="created-at" class="text-[#64748B] text-xs">1/15/2024</p>
-                    </div>
-                </div>
-
-                <div class="card shadow-md border-t-2 border-t-[#00A96E]">
-                    <div class="upper-part space-y-3 p-3">
-                        <div class="flex justify-between items-center">
-                            <div id="status" class="inner-card-img bg-[#CBFADB] p-2 rounded-full">
-                                <img src="./assets/Open-Status.png" alt="">
-                            </div>
-
-                            <div id="priority">
-                                <button id="priority-btn" class="bg-[#FEECEC] text-[#EF4444] px-8 py-2 rounded-full font-medium text-xs">HIGH</button>
-                            </div>
-                        </div>
-
-                        <div class="space-y-2">
-                            <h2 id="title" class="text-[#1F2937] text-sm font-semibold">Fix navigation menu on mobile devices</h2>
-                            <p id="description" class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
-                            <div class="flex gap-2">
-                                <button id="category" class="w-fit bg-[#FEECEC] text-[#EF4444] border border-[#f7c3c3] p-2 rounded-full font-medium text-xs"><i class="fa-solid fa-bug" style="color: #ef4444;"></i> BUG</button>
-
-                                <button id="label" class="bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A] p-2 rounded-full font-medium text-xs"><i class="fa-solid fa-life-ring" style="color: #d97706;"></i> HELP WANTED</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="w-full border border-gray-200">
-
-                    <div class="lower-part space-y-2 p-3">
-                        <p id="author" class="text-[#64748B] text-xs">#1 by john_doe</p>
-                        <p id="created-at" class="text-[#64748B] text-xs">1/15/2024</p>
-                    </div>
-                </div>
-
-                <div class="card shadow-md border-t-2 border-t-[#00A96E]">
-                    <div class="upper-part space-y-3 p-3">
-                        <div class="flex justify-between items-center">
-                            <div id="status" class="inner-card-img bg-[#CBFADB] p-2 rounded-full">
-                                <img src="./assets/Open-Status.png" alt="">
-                            </div>
-
-                            <div id="priority">
-                                <button id="priority-btn" class="bg-[#FEECEC] text-[#EF4444] px-8 py-2 rounded-full font-medium text-xs">HIGH</button>
-                            </div>
-                        </div>
-
-                        <div class="space-y-2">
-                            <h2 id="title" class="text-[#1F2937] text-sm font-semibold">Fix navigation menu on mobile devices</h2>
-                            <p id="description" class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
-                            <div class="flex gap-2">
-                                <button id="category" class="w-fit bg-[#FEECEC] text-[#EF4444] border border-[#f7c3c3] p-2 rounded-full font-medium text-xs"><i class="fa-solid fa-bug" style="color: #ef4444;"></i> BUG</button>
-
-                                <button id="label" class="bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A] p-2 rounded-full font-medium text-xs"><i class="fa-solid fa-life-ring" style="color: #d97706;"></i> HELP WANTED</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="w-full border border-gray-200">
-
-                    <div class="lower-part space-y-2 p-3">
-                        <p id="author" class="text-[#64748B] text-xs">#1 by john_doe</p>
-                        <p id="created-at" class="text-[#64748B] text-xs">1/15/2024</p>
-                    </div>
-                </div>
-
-                <div class="card shadow-md border-t-2 border-t-[#00A96E]">
-                    <div class="upper-part space-y-3 p-3">
-                        <div class="flex justify-between items-center">
-                            <div id="status" class="inner-card-img bg-[#CBFADB] p-2 rounded-full">
-                                <img src="./assets/Open-Status.png" alt="">
-                            </div>
-
-                            <div id="priority">
-                                <button id="priority-btn" class="bg-[#FEECEC] text-[#EF4444] px-8 py-2 rounded-full font-medium text-xs">HIGH</button>
-                            </div>
-                        </div>
-
-                        <div class="space-y-2">
-                            <h2 id="title" class="text-[#1F2937] text-sm font-semibold">Fix navigation menu on mobile devices</h2>
-                            <p id="description" class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
-                            <div class="flex gap-2">
-                                <button id="category" class="w-fit bg-[#FEECEC] text-[#EF4444] border border-[#f7c3c3] p-2 rounded-full font-medium text-xs"><i class="fa-solid fa-bug" style="color: #ef4444;"></i> BUG</button>
-
-                                <button id="label" class="bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A] p-2 rounded-full font-medium text-xs"><i class="fa-solid fa-life-ring" style="color: #d97706;"></i> HELP WANTED</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="w-full border border-gray-200">
-
-                    <div class="lower-part space-y-2 p-3">
-                        <p id="author" class="text-[#64748B] text-xs">#1 by john_doe</p>
-                        <p id="created-at" class="text-[#64748B] text-xs">1/15/2024</p>
-                    </div>
-                </div>
+            <!-- ALL CARDS SECTION -->
+            <div id="cards-container" class="p-6 grid grid-cols-4 gap-3">
+                
             </div>
         </section>
     </main>
+
+    <script src="./scripts/script.js"></script>
 </body>
 
 </html>
