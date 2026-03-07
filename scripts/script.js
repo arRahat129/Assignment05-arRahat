@@ -9,6 +9,31 @@ const loadingSpinner = document.getElementById("loading-spinner");
 
 const cardsContainer = document.getElementById("cards-container");
 
+const searchInput = document.getElementById("search");
+
+const searchBtn = document.getElementById("search-btn");
+
+async function searchByTitle() {
+    const text = searchInput.value.toLowerCase();
+    // console.log(text);
+
+    // const textSearch = allIssues.filter(issue => issue.title.toLowerCase().includes(text));
+    const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`);
+
+    const data = await response.json();
+    
+    const textSearch = data.data;
+    
+    displayCards(textSearch);
+    countLength();
+
+    searchInput.value = "";
+}
+
+searchBtn.addEventListener("click", () => {
+    searchByTitle();
+})
+
 function toogleStyle(id) {
     allFilterBtn.classList.remove("btn-primary");
     openFilterBtn.classList.remove("btn-primary");
@@ -38,7 +63,7 @@ function hideLoading() {
 function countLength() {
     let allCardsTotal = cardsContainer.children.length;
     // console.log(allCardsTotal);
-    issueCount.innerText = `${allCardsTotal} Issues`
+    issueCount.innerText = `${allCardsTotal} Issues`;
 }
 
 
@@ -50,11 +75,10 @@ async function loadAllIssues() {
 
     // console.log((allIssues));
     
-    
     hideLoading();
+    
     displayCards(allIssues);
     countLength();
-    
 }
 
 async function loadOpenIssues(){
@@ -62,15 +86,15 @@ async function loadOpenIssues(){
 
     if(allIssues.length === 0){
         await loadAllIssues();
+        return;
     }
     
     const openIssues = allIssues.filter(issue => issue.status === "open");
     
     hideLoading();
-
+    
     displayCards(openIssues);
     countLength();
-    
 }
 
 async function loadClosedIssues(){
@@ -79,14 +103,15 @@ async function loadClosedIssues(){
 
     if(allIssues.length === 0){
         await loadAllIssues();
+        return;
     }
 
     const closedIssues = allIssues.filter(issue => issue.status === "closed");
-
+    
     hideLoading();
 
     displayCards(closedIssues);
-    countLength(closedIssues);
+    countLength();
 }
 
 allFilterBtn.addEventListener("click", () => {
@@ -120,7 +145,8 @@ function issueLabels(labels, container) {
             icon = `<i class="fa-regular fa-star text-[#00A96E]"></i>`;
         }
         else {
-            button.className = "hidden";
+            button.className = "bg-[#DEFCE8] text-[#00A96E] border border-[#BBF7D0] p-2 rounded-full font-medium text-xs";
+            icon = `<i class="fa-regular fa-clipboard" style="color: #00a96e;"></i>`
         }
 
         button.innerHTML = `
@@ -138,7 +164,7 @@ function displayCards(issues) {
 
     issues.forEach(issue => {
         const card = document.createElement("div");
-        card.classList = "card shadow-md border-t-2 border-t-[#00A96E]"
+        card.classList = `card shadow-md border-t-2 ${issue.status === "open" ? "border-t-[#00A96E]" : "border-t-[#A855F7]"}`;
         card.innerHTML = `
             <div class="upper-part space-y-3 p-3">
                 <div class="flex justify-between items-center">
