@@ -163,13 +163,38 @@ function issueLabels(labels, container) {
     });
 }
 
+async function openIssueModal(id){
+    const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+    const data = await response.json();
+// console.log(data);
+    const issue = data.data;
+
+    document.getElementById("modal-title").innerText = issue.title;
+
+    document.getElementById("modal-status").innerText = issue.status;
+
+    document.getElementById("modal-author").innerText = issue.author;
+
+    document.getElementById("modal-date").innerText = issue.createdAt;
+
+    document.getElementById("modal-labels").innerText = issue.labels;
+
+    document.getElementById("modal-description").innerText = issue.description;
+    
+    document.getElementById("modal-assignee").innerText = issue.assignee;
+
+    document.getElementById("modal-priority").innerText = issue.priority;
+
+    document.getElementById("issue_modal").showModal();
+}
+
 function displayCards(issues) {
     // console.log(issues);
     cardsContainer.innerHTML = "";
 
     issues.forEach(issue => {
         const card = document.createElement("div");
-        card.classList = `card shadow-md border-t-2 ${issue.status === "open" ? "border-t-[#00A96E]" : "border-t-[#A855F7]"}`;
+        card.classList = `card shadow-md border-t-2 ${issue.status === "open" ? "border-t-[#00A96E]" : "border-t-[#A855F7]"} cursor-pointer`;
         card.innerHTML = `
             <div class="upper-part space-y-3 p-3">
                 <div class="flex justify-between items-center">
@@ -208,6 +233,11 @@ function displayCards(issues) {
 
         const labelContainer = card.querySelector('.labels');
         issueLabels(issue.labels, labelContainer);
+
+        // Modal Function Calling
+        card.addEventListener("click", () => {
+            openIssueModal(issue.id);
+        });
 
         cardsContainer.appendChild(card);
     });
