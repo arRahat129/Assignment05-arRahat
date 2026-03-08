@@ -181,6 +181,8 @@ async function openIssueModal(id) {
     document.getElementById("modal-date").innerText = issue.createdAt;
 
     const labelsContainer = document.getElementById("modal-labels");
+    labelsContainer.innerHTML = "";
+    
     issueLabels(issue.labels, labelsContainer);
 
     document.getElementById("modal-description").innerText = issue.description;
