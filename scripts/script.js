@@ -17,6 +17,11 @@ async function searchByTitle() {
     const text = searchInput.value.toLowerCase();
     // console.log(text);
 
+    if(text.length === 0){
+        alert("Your need to write something to search for it!!");
+        return;
+    }
+
     // const textSearch = allIssues.filter(issue => issue.title.toLowerCase().includes(text));
     const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`);
 
