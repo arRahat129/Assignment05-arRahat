@@ -22,60 +22,116 @@
 </head>
 
 <body class="geist-font">
-    <div class="max-w-[1600px] mx-auto navbar flex justify-between bg-base-100 shadow-sm">
-        <div class="flex items-center gap-1">
-            <img class="w-10 h-10" src="./assets/github-logo.png" alt="">
-            <a class="btn btn-ghost text-xl p-0">GitHub Issues Tracker</a>
-        </div>
-        <div class="flex gap-2">
-            <input id="search" type="text" placeholder="🔍 Search Issues" class="input input-bordered w-24 md:w-auto" />
-            <button id="search-btn" class="btn btn-primary"><i class="fa-solid fa-plus"></i> New Issue</button>
+
+    <div id="login-container" class="h-screen flex justify-center items-center bg-gray-100 p-4">
+        <div class="bg-white w-full max-w-md p-8 space-y-6 rounded-xl shadow-lg border border-gray-200">
+
+            <div class="text-center">
+                <div class="flex justify-center mb-6">
+                    <img src="./assets/github-logo.png" alt="">
+                </div>
+
+                <h2 class="text-2xl font-semibold text-[#1F2937] mb1">GitHub Issues Tracker</h2>
+                <p class="text-[#64748B]">Sign in to manage your issues</p>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="font-medium">Username</label>
+                    <input id="login-username" type="text" placeholder="Enter Username"
+                        class="text-[#64748B] border-[#E4E4E7] p-4 rounded-lg w-full my-2">
+
+                    <p class="text-sm text-[#4A00FF]">Default: admin</p>
+                </div>
+
+                <div>
+                    <label class="font-medium">Password</label>
+                    <input id="login-password" type="password" placeholder="Enter Password"
+                        class="text-[#64748B] border-[#E4E4E7] p-4 rounded-lg w-full my-2">
+
+                    <p class="text-sm text-[#4A00FF]">Default: admin123</p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <button id="login-btn" class="btn w-full text-white bg-[#4A00FF] font-semibold rounded-lg p-4">
+                    Sign In
+                </button>
+
+                <div class="flex items-center gap-2">
+                    <hr class="w-[45%] border border-[#E4E4E7]"><span class="text-[#1F2937]">OR</span><hr class="w-[45%] border border-[#E4E4E7]">
+                </div>
+
+                <div>
+                    <p class="text-sm text-[#64748B] text-center mb-2">Demo Credentials:</p>
+                    <div class="bg-[#F8FAFC] p-6 rounded-lg text-sm text-center">
+                        <p><span class="font-semibold">Username:</span> admin</p>
+                        <p><span class="font-semibold">Password:</span> admin123</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
-    <main class="container mx-auto mt-15 space-y-4 mb-5">
-        <!-- TOOGLE PART -->
-        <section id="toogle-button-section" class="card border border-gray-200 p-6 flex flex-row space-x-2">
-            <button id="all-filter-btn" onclick="toogleStyle('all-filter-btn')"
-                class="btn btn-primary px-8">All</button>
-            <button id="open-filter-btn" onclick="toogleStyle('open-filter-btn')"
-                class="btn bg-white text-gray-500 px-8">Open</button>
-            <button id="closed-filter-btn" onclick="toogleStyle('closed-filter-btn')"
-                class="btn bg-white text-gray-500 px-8">Closed</button>
-        </section>
 
-        <section id="working-section" class="card border border-gray-200">
-            <!-- COUNTS SHOW -->
-            <div id="count-part" class="flex justify-between items-center p-6">
-                <div id="" class="left-part flex items-center gap-2">
-                    <div class="image bg-[#ECE4FF] p-2 rounded-full">
-                        <img src="./assets/Aperture.png" alt="">
+    <div id="overallContainer" class="hidden">
+        <div class="max-w-[1600px] mx-auto navbar flex justify-between bg-base-100 shadow-sm">
+            <div class="flex items-center gap-1">
+                <img class="w-10 h-10" src="./assets/github-logo.png" alt="">
+                <a class="btn btn-ghost text-xl p-0">GitHub Issues Tracker</a>
+            </div>
+            <div class="flex gap-2">
+                <input id="search" type="text" placeholder="🔍 Search Issues"
+                    class="input input-bordered w-24 md:w-auto" />
+                <button id="search-btn" class="btn btn-primary"><i class="fa-solid fa-plus"></i> New Issue</button>
+            </div>
+        </div>
+
+        <main class="container mx-auto mt-15 space-y-4 mb-5">
+            <!-- TOOGLE PART -->
+            <section id="toogle-button-section" class="card border border-gray-200 p-6 flex flex-row space-x-2">
+                <button id="all-filter-btn" onclick="toogleStyle('all-filter-btn')"
+                    class="btn btn-primary px-8">All</button>
+                <button id="open-filter-btn" onclick="toogleStyle('open-filter-btn')"
+                    class="btn bg-white text-gray-500 px-8">Open</button>
+                <button id="closed-filter-btn" onclick="toogleStyle('closed-filter-btn')"
+                    class="btn bg-white text-gray-500 px-8">Closed</button>
+            </section>
+
+            <section id="working-section" class="card border border-gray-200">
+                <!-- COUNTS SHOW -->
+                <div id="count-part" class="flex justify-between items-center p-6">
+                    <div id="" class="left-part flex items-center gap-2">
+                        <div class="image bg-[#ECE4FF] p-2 rounded-full">
+                            <img src="./assets/Aperture.png" alt="">
+                        </div>
+                        <div id="text-issue-count">
+                            <div id="issue-count" class="text-xl font-semibold text-[#1F2937]">0</div>
+                            <p class="text-[#64748B]">Track and manage your project issues</p>
+                        </div>
                     </div>
-                    <div id="text-issue-count">
-                        <div id="issue-count" class="text-xl font-semibold text-[#1F2937]">0</div>
-                        <p class="text-[#64748B]">Track and manage your project issues</p>
+
+                    <div class="right-part flex gap-2">
+                        <p class="font-medium"><i class="fa-solid fa-circle" style="color: #00A96E;"></i> Open</p>
+                        <p class="font-medium"><i class="fa-solid fa-circle" style="color: #A855F7;"></i> Closed</p>
                     </div>
                 </div>
 
-                <div class="right-part flex gap-2">
-                    <p class="font-medium"><i class="fa-solid fa-circle" style="color: #00A96E;"></i> Open</p>
-                    <p class="font-medium"><i class="fa-solid fa-circle" style="color: #A855F7;"></i> Closed</p>
+                <hr class="border border-gray-200">
+
+                <!-- LOADING SPINNER -->
+                <div id="loading-spinner" class="h-[60vh] hidden justify-center">
+                    <span class="loading loading-spinner loading-xl"></span>
                 </div>
-            </div>
 
-            <hr class="border border-gray-200">
+                <!-- ALL CARDS SECTION -->
+                <div id="cards-container" class="p-6 grid grid-cols-4 gap-3">
 
-            <!-- LOADING SPINNER -->
-            <div id="loading-spinner" class="h-[60vh] hidden justify-center">
-                <span class="loading loading-spinner loading-xl"></span>
-            </div>
-
-            <!-- ALL CARDS SECTION -->
-            <div id="cards-container" class="p-6 grid grid-cols-4 gap-3">
-
-            </div>
-        </section>
-    </main>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <dialog id="issue_modal" class="modal">
         <div class="modal-box max-w-2xl">
