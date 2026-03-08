@@ -17,7 +17,7 @@ async function searchByTitle() {
     const text = searchInput.value.toLowerCase();
     // console.log(text);
 
-    if(text.length === 0){
+    if (text.length === 0) {
         alert("Your need to write something to search for it!!");
         return;
     }
@@ -26,9 +26,9 @@ async function searchByTitle() {
     const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`);
 
     const data = await response.json();
-    
+
     const textSearch = data.data;
-    
+
     displayCards(textSearch);
     countLength();
 
@@ -79,40 +79,40 @@ async function loadAllIssues() {
     allIssues = data.data;
 
     // console.log((allIssues));
-    
+
     hideLoading();
-    
+
     displayCards(allIssues);
     countLength();
 }
 
-async function loadOpenIssues(){
+async function loadOpenIssues() {
     showLoading();
 
-    if(allIssues.length === 0){
+    if (allIssues.length === 0) {
         await loadAllIssues();
         return;
     }
-    
+
     const openIssues = allIssues.filter(issue => issue.status === "open");
-    
+
     hideLoading();
-    
+
     displayCards(openIssues);
     countLength();
 }
 
-async function loadClosedIssues(){
+async function loadClosedIssues() {
 
     showLoading();
 
-    if(allIssues.length === 0){
+    if (allIssues.length === 0) {
         await loadAllIssues();
         return;
     }
 
     const closedIssues = allIssues.filter(issue => issue.status === "closed");
-    
+
     hideLoading();
 
     displayCards(closedIssues);
@@ -122,7 +122,7 @@ async function loadClosedIssues(){
 allFilterBtn.addEventListener("click", () => {
     displayCards(allIssues);
     countLength(allIssues);
-}) ;
+});
 
 openFilterBtn.addEventListener("click", () => {
     loadOpenIssues();
@@ -163,27 +163,39 @@ function issueLabels(labels, container) {
     });
 }
 
-async function openIssueModal(id){
+async function openIssueModal(id) {
     const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
     const data = await response.json();
-// console.log(data);
+    // console.log(data);
     const issue = data.data;
 
     document.getElementById("modal-title").innerText = issue.title;
 
-    document.getElementById("modal-status").innerText = issue.status;
+    const status = document.getElementById("modal-status");
+    status.innerHTML = (issue.status === "open")
+        ? `<button class="rounded-full text-xs text-white bg-[#00A96E] font-medium p-2">Opened</button>`
+        : `<button class="rounded-full text-xs text-white bg-[#f80d0dd0] font-medium p-2">Closed</button>`;
 
     document.getElementById("modal-author").innerText = issue.author;
 
     document.getElementById("modal-date").innerText = issue.createdAt;
 
-    document.getElementById("modal-labels").innerText = issue.labels;
+    const labelsContainer = document.getElementById("modal-labels");
+    issueLabels(issue.labels, labelsContainer);
 
     document.getElementById("modal-description").innerText = issue.description;
-    
+
     document.getElementById("modal-assignee").innerText = issue.assignee;
 
-    document.getElementById("modal-priority").innerText = issue.priority;
+    const priority = document.getElementById("modal-priority");
+    priority.innerHTML = `<button id="priority-btn" class="${issue.priority === "high"
+        ? "bg-[#f30303] text-white"
+        : issue.priority === "medium"
+            ? "bg-[#f8c600] text-white"
+            : issue.priority === "low"
+                ? "bg-[#79797a] text-white"
+                : ""
+        } px-4 py-2 rounded-full font-medium text-xs">${issue.priority.toUpperCase()}</button>`;
 
     document.getElementById("issue_modal").showModal();
 }
