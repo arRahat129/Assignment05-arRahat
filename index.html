@@ -36,9 +36,12 @@
     <main class="container mx-auto mt-15 space-y-4 mb-5">
         <!-- TOOGLE PART -->
         <section id="toogle-button-section" class="card border border-gray-200 p-6 flex flex-row space-x-2">
-            <button id="all-filter-btn" onclick="toogleStyle('all-filter-btn')" class="btn btn-primary px-8">All</button>
-            <button id="open-filter-btn" onclick="toogleStyle('open-filter-btn')" class="btn bg-white text-gray-500 px-8">Open</button>
-            <button id="closed-filter-btn" onclick="toogleStyle('closed-filter-btn')" class="btn bg-white text-gray-500 px-8">Closed</button>
+            <button id="all-filter-btn" onclick="toogleStyle('all-filter-btn')"
+                class="btn btn-primary px-8">All</button>
+            <button id="open-filter-btn" onclick="toogleStyle('open-filter-btn')"
+                class="btn bg-white text-gray-500 px-8">Open</button>
+            <button id="closed-filter-btn" onclick="toogleStyle('closed-filter-btn')"
+                class="btn bg-white text-gray-500 px-8">Closed</button>
         </section>
 
         <section id="working-section" class="card border border-gray-200">
@@ -69,10 +72,49 @@
 
             <!-- ALL CARDS SECTION -->
             <div id="cards-container" class="p-6 grid grid-cols-4 gap-3">
-                
+
             </div>
         </section>
     </main>
+
+    <dialog id="issue_modal" class="modal">
+        <div class="modal-box max-w-2xl">
+
+            <h3 id="modal-title" class="text-2xl font-bold mb-2">title</h3>
+
+            <div class="flex items-center gap-2 text-sm mb-6">
+                <span id="modal-status" class="text-xs font-medium">open</span>
+                <img src="./assets/Ellipse 5.png" alt="">
+                <span id="modal-author" class="text-xs text-[#64748B]">author</span>
+                <img src="./assets/Ellipse 5.png" alt="">
+                <span id="modal-date" class="text-xs text-[#64748B]">date</span>
+            </div>
+
+            <div id="modal-labels" class="flex gap-1 mb-6 font-medium text-xs">labels</div>
+
+            <p id="modal-description" class="text-sm text-[#64748B] mb-6">description</p>
+
+            <div class="grid grid-cols-2 gap-3 bg-gray-100 p-4 rounded-lg mb-6">
+                <div>
+                    <p class="text-[#64748B]">Assignee:</p>
+                    <p id="modal-assignee" class="font-semibold text-[#1F2937]">Fahim Ahmed</p>
+                </div>
+
+                <div>
+                    <p class="text-[#64748B]">Priority:</p>
+                    <span id="modal-priority" class="font-medium text-xs">high</span>
+                </div>
+            </div>
+
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn btn-primary">Close</button>
+                </form>
+            </div>
+
+        </div>
+    </dialog>
+    <button onclick="issue_modal.showModal()">HEY</button>
 
     <script src="./scripts/script.js"></script>
 </body>
