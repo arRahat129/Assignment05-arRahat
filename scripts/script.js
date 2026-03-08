@@ -1,4 +1,13 @@
+const loginContainer = document.getElementById("login-container");
+const overallContainer = document.getElementById("overallContainer");
+
+const usernameInput = document.getElementById("login-username");
+const passwordInput = document.getElementById("login-password");
+
+const loginBtn = document.getElementById("login-btn");
+
 let allIssues = [];
+
 const allFilterBtn = document.getElementById("all-filter-btn");
 const openFilterBtn = document.getElementById("open-filter-btn");
 const closedFilterBtn = document.getElementById("closed-filter-btn");
@@ -12,6 +21,23 @@ const cardsContainer = document.getElementById("cards-container");
 const searchInput = document.getElementById("search");
 
 const searchBtn = document.getElementById("search-btn");
+
+
+
+loginBtn.addEventListener("click", () => {
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+
+    if(username === "admin" && password === "admin123"){
+        loginContainer.classList.add("hidden");
+        overallContainer.classList.remove("hidden");
+
+        loadAllIssues();
+    }
+    else{
+        alert("UserAuthentication Failed!!");
+    }
+});
 
 async function searchByTitle() {
     const text = searchInput.value.toLowerCase();
